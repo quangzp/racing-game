@@ -1,7 +1,9 @@
 import pygame
 from car import *
+from utils import *
 
-def draw(win,images,player_car1,player_car2,game_info,MAIN_FONT):
+def draw(win,map,player_car1,player_car2,game_info,MAIN_FONT):
+	images = map.get_images()
 	for k in images:
 		val = images[k]
 		if k == 'finish':
@@ -19,3 +21,7 @@ def draw(win,images,player_car1,player_car2,game_info,MAIN_FONT):
 	player_car1.draw(win)
 	player_car2.draw(win)
 	pygame.display.update()
+
+# def select_color_car(WIN, MAIN_FONT, player_car1,player_car2):
+    
+#     pygame.display.update()

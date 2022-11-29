@@ -1,8 +1,8 @@
 import time
 class GameInfo:
-    ROUND = 3
     def __init__(self,maps,round = 1):
         self.maps = maps
+        self.ROUND = len(maps)
         self.round = round
         self.started = False
         self.round_start_time = 0

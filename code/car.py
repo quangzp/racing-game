@@ -3,15 +3,17 @@ from maps import *
 from utils import *
 from game_info import *
 class PlayerCar:
-    def __init__(self,img,max_vel,rotation_vel,map,type):
-        self.img = img
+    def __init__(self,max_vel,rotation_vel,map,type):
         self.max_vel = max_vel
         self.rotation_vel = rotation_vel
         self.base_map = map
         self.map = map
         self.acceleration = 0.1
         self.type = type
-        self.x, self.y = self.set_position()
+        self.set_position()
+
+    def set_img(self,img):
+        self.img = img
     
     def rotate(self,left=False,right=False):
         if left:
@@ -25,13 +27,11 @@ class PlayerCar:
         self.angle = self.map.angle_car
         self.vel = 0
         if self.angle == 90:
-            print("a")
             self.x = self.map.finish_position[0] - 30
             self.y = self.map.finish_position[1] + (self.type - 1) * 40 + 10
         else:
-            self.x = self.map.finish_position[0] + (self.type - 1) * 40
+            self.x = self.map.finish_position[0] + (self.type - 1) * 40 -20
             self.y = self.map.finish_position[1] - 10
-        return (self.x, self.y)
 
     def move_forward(self):
         self.vel = min(self.vel + self.acceleration , self.max_vel)
@@ -91,27 +91,28 @@ def move_player(player_car1,player_car2):
     if keys[pygame.K_RIGHT]:
         player_car2.rotate(right=True)
     if keys[pygame.K_UP]:
-        moved1 = True
+        moved2 = True
         player_car2.move_forward()
     if keys[pygame.K_DOWN]:
-        moved1 = True
+        moved2 = True
         player_car2.move_backward()
     if not moved2:
         player_car2.reduce_speed()
     
 def handle_collision(player_car, map,game_info, WIN, MAIN_FONT):
     if player_car.collide(map.track_border_mask) != None:
+        # print("aaaaxa")
         player_car.bounce()
 
     player_finish_poi_collide = player_car.collide(map.finish_mask, *map.finish_position)
     if player_finish_poi_collide != None:
-        print(player_finish_poi_collide)
-        if player_finish_poi_collide[map.finish_dimension] == map.finish_collision_val:
+        # print(player_finish_poi_collide)
+        if player_finish_poi_collide[map.finish_dimension] <= map.finish_collision_val:
             player_car.bounce()
         else:
             blit_text_center(WIN, MAIN_FONT, f"Player {player_car.type} win!")
             pygame.display.update()
-            pygame.time.wait(5000)
+            pygame.time.wait(3000)
             game_info.win(player_car.type)
             game_info.next_round()
             

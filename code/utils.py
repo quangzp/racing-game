@@ -1,7 +1,7 @@
 import pygame
-from maps import *
 from game_info import *
 
+pygame.font.init()
 def scale_image(img, factor):
     size = round(img.get_width() * factor), round(img.get_height() * factor)
     return pygame.transform.scale(img, size)
@@ -18,4 +18,5 @@ def blit_text_center(win, font, text):
     win.blit(render, (win.get_width()/2 - render.get_width() /
                       2, win.get_height()/2 - render.get_height()/2))
 
+    
             
