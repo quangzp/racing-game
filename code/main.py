@@ -6,10 +6,10 @@ from maps import *
 from draw import *
 from game_info import *
 
-#for map 1
-TRACK = pygame.image.load("images/duongdua.png")
-TRACK_BORDER = pygame.image.load("images/vien.png")
-TRACK_BORDER_MASK = pygame.mask.from_surface(TRACK_BORDER)
+# #for map 1
+# TRACK = pygame.image.load("images/duongdua.png")
+# TRACK_BORDER = pygame.image.load("images/vien.png")
+# TRACK_BORDER_MASK = pygame.mask.from_surface(TRACK_BORDER)
 
 TRACK1 = pygame.image.load("images/track1.png")
 TRACK_BORDER1 = pygame.image.load("images/track-border1.png")
