@@ -100,11 +100,11 @@ while run:
             winner = 1
         else:
             winner = 2
-        blit_text_center(WIN, MAIN_FONT, f"Player{winner} won the game!")
-        pygame.display.update()
-        pygame.time.wait(5000)
         game_info.reset()
         player_car1.reset()
         player_car2.reset()
-
+        draw(WIN, game_info.maps[0], player_car1, player_car2,game_info,MAIN_FONT)
+        blit_text_center(WIN, MAIN_FONT, f"Player{winner} won the game!")
+        pygame.display.update()
+        pygame.time.wait(5000)
 pygame.quit()
